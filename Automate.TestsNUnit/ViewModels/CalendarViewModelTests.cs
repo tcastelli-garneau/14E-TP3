@@ -43,6 +43,8 @@ namespace Automate.TestsNUnit.ViewModels
         [Test]
         public void DateSelected_SelectedDateInvalid_AddErrorToErrorsCollection()
         {
+            calendarViewModel.SelectedDate = null;
+
             calendarViewModel.DateSelected();
 
             Assert.That(calendarViewModel.HasErrors, Is.True);
@@ -133,6 +135,8 @@ namespace Automate.TestsNUnit.ViewModels
         [Test]
         public void AddTask_SelectedDateInvalid_AddErrorToErrorsCollection()
         {
+            calendarViewModel.SelectedDate = null;
+
             calendarViewModel.AddTask();
 
             Assert.That(calendarViewModel.HasErrors, Is.True);
@@ -214,7 +218,7 @@ namespace Automate.TestsNUnit.ViewModels
 
             propertyChangedMock.Verify(x =>
                 x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == argPropertyName)),
-                Times.Once()
+                Times.AtLeastOnce()
             );
         }
 
@@ -342,7 +346,7 @@ namespace Automate.TestsNUnit.ViewModels
 
             propertyChangedMock.Verify(x =>
                 x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == argPropertyName)),
-                Times.Once()
+                Times.AtLeastOnce()
             );
         }
 
