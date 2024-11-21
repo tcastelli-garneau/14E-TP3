@@ -29,9 +29,11 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Background="LightGray" Margin="10" Padding="10">
-                    <TextBox Text="{Binding DoesTodayHasCriticalTask}"></TextBox>
-                </Border>
+                <ui:ToggleSwitch Margin="0,93,0,0" VerticalAlignment="Top" OffContent="Lumière fermée" OnContent="Lumière allumée" ></ui:ToggleSwitch>
+                <ui:ToggleSwitch VerticalAlignment="Top" OffContent="Chauffage fermé" OnContent="Chauffage allumé"></ui:ToggleSwitch>
+                <ui:ToggleSwitch VerticalAlignment="Top" Margin="0,125,0,0" OffContent="Arrosage fermé" OnContent="Arrosage ouvert"></ui:ToggleSwitch>
+                <ui:ToggleSwitch VerticalAlignment="Top" Margin="0,29,0,0" OffContent="Fenêtres fermées " OnContent="Fenêtres ouvertes"></ui:ToggleSwitch>
+                <ui:ToggleSwitch VerticalAlignment="Top" Margin="0,61,0,0" OffContent="Ventilation fermée" OnContent="Ventilation ouvert"></ui:ToggleSwitch>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
                     <Button Content="Cycle de culture" Height="50" Margin="0,0,0,10" Width="174" Command="{Binding GoToCalendarCommand}"/>
