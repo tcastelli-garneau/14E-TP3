@@ -13,19 +13,24 @@ namespace Automate.Utils
 
             using (TextFieldParser parser = new TextFieldParser(Environment.tempDataPath))
             {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(",");
+                SetupDelimiters(parser);
+                RemoveHeaderFields(parser);
+                weathers = ReadAllFields(parser);
+            }
 
-                parser.ReadFields();
+            return weathers;
+        }
 
-                while (!parser.EndOfData)
-                {
-                    string[]? fields = parser.ReadFields();
-                    if (fields == null)
-                        break;
+        private static List<Weather> ReadAllFields(TextFieldParser parser)
+        {
+            List<Weather> weathers = new List<Weather>();
 
+            while (!parser.EndOfData)
+            {
+                string[]? fields = parser.ReadFields();
+
+                if (fields != null)
                     weathers.Add(ConvertFieldsToWeather(fields));
-                }
             }
 
             return weathers;
@@ -42,6 +47,17 @@ namespace Automate.Utils
             };
 
             return weather;
+        }
+
+        private static void SetupDelimiters(TextFieldParser parser)
+        {
+            parser.TextFieldType = FieldType.Delimited;
+            parser.SetDelimiters(",");
+        }
+
+        private static void RemoveHeaderFields(TextFieldParser parser)
+        {
+            parser.ReadFields();
         }
     }
 }
