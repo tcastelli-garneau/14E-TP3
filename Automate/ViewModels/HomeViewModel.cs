@@ -10,7 +10,6 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.VisualBasic.FileIO;
 
 namespace Automate.ViewModels
 {
@@ -66,7 +65,7 @@ namespace Automate.ViewModels
             SignOutCommand = new RelayCommand(SignOut);
             ToggleWeatherReadingCommand = new RelayCommand(ToggleWeatherReading);
 
-            Weathers = weatherReader.ReadWeather();
+            Weathers = this.weatherReader.ReadWeather();
         }
 
         public void GoToCalendar()

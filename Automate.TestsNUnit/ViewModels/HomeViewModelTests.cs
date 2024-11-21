@@ -4,7 +4,6 @@ using Automate.Models;
 using Automate.ViewModels;
 using Automate.Views;
 using Moq;
-using NUnit.Framework.Constraints;
 using System.ComponentModel;
 using System.Windows;
 
