@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.VisualBasic.FileIO;
 
 namespace Automate.ViewModels
 {
@@ -17,6 +18,7 @@ namespace Automate.ViewModels
     {
         private readonly INavigationUtils navigationUtils;
         private readonly ITasksServices tasksServices;
+        private readonly IWeatherReader weatherReader;
         private Window window;
 
         public string CriticalTaskMessage
@@ -52,17 +54,19 @@ namespace Automate.ViewModels
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public HomeViewModel(Window openedWindow, INavigationUtils navigationUtils, ITasksServices tasksServices)
+        public HomeViewModel(
+            Window openedWindow, INavigationUtils navigationUtils, ITasksServices tasksServices, IWeatherReader weatherReader)
         {
             window = openedWindow;
             this.navigationUtils = navigationUtils;
             this.tasksServices = tasksServices;
+            this.weatherReader = weatherReader;
 
             GoToCalendarCommand = new RelayCommand(GoToCalendar);
             SignOutCommand = new RelayCommand(SignOut);
             ToggleWeatherReadingCommand = new RelayCommand(ToggleWeatherReading);
 
-            Weathers = CsvReader.ReadWeather();
+            Weathers = weatherReader.ReadWeather();
         }
 
         public void GoToCalendar()

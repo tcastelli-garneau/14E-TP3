@@ -1,8 +1,10 @@
 ﻿using Automate.Abstract.Services;
 using Automate.Abstract.Utils;
+using Automate.Models;
 using Automate.ViewModels;
 using Automate.Views;
 using Moq;
+using NUnit.Framework.Constraints;
 using System.ComponentModel;
 using System.Windows;
 
@@ -17,6 +19,7 @@ namespace Automate.TestsNUnit.ViewModels
         private Mock<Window> mockWindow;
         private Mock<INavigationUtils> mockNavigationUtils;
         private Mock<ITasksServices> mockTasksServices;
+        private Mock<IWeatherReader> mockWeatherReader;
         private Mock<PropertyChangedEventHandler> mockPropertyChanged;
 
         [SetUp]
@@ -26,8 +29,11 @@ namespace Automate.TestsNUnit.ViewModels
             mockNavigationUtils = new Mock<INavigationUtils>();
             mockPropertyChanged = new Mock<PropertyChangedEventHandler>();
             mockTasksServices = new Mock<ITasksServices>();
+            mockWeatherReader = new Mock<IWeatherReader>();
+            mockWeatherReader.Setup(x => x.ReadWeather()).Returns(new List<Weather>() { new Weather()});
 
-            homeViewModel = new HomeViewModel(mockWindow.Object, mockNavigationUtils.Object, mockTasksServices.Object);
+            homeViewModel = new HomeViewModel(
+                mockWindow.Object, mockNavigationUtils.Object, mockTasksServices.Object, mockWeatherReader.Object);
 
             homeViewModel.PropertyChanged += mockPropertyChanged.Object;
         }
@@ -70,7 +76,7 @@ namespace Automate.TestsNUnit.ViewModels
         {
             homeViewModel.ToggleWeatherReading();
 
-            Assert.That(homeViewModel.CurrentWeather, Is.Not.Null);
+            Assert.That(() => homeViewModel.CurrentWeather, Is.Not.Null.After(1).Seconds);
         }
 
         [Test]
@@ -99,8 +105,8 @@ namespace Automate.TestsNUnit.ViewModels
         [Test]
         public void ToggleWeatherReading_TimerOn_OnPropertyChangedIsInvoked()
         {
-            const string propertyName = "ToggleWeatherReadingMessage";
             homeViewModel.ToggleWeatherReading();
+            const string propertyName = "ToggleWeatherReadingMessage";
 
             homeViewModel.ToggleWeatherReading();
 

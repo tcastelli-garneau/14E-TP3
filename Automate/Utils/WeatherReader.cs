@@ -1,13 +1,14 @@
-﻿using Automate.Models;
+﻿using Automate.Abstract.Utils;
+using Automate.Models;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 
 namespace Automate.Utils
 {
-    public static class CsvReader
+    public class WeatherReader : IWeatherReader
     {
-        public static List<Weather> ReadWeather()
+        public List<Weather> ReadWeather()
         {
             List<Weather> weathers = new List<Weather>();
 
@@ -21,7 +22,7 @@ namespace Automate.Utils
             return weathers;
         }
 
-        private static List<Weather> ReadAllFields(TextFieldParser parser)
+        private List<Weather> ReadAllFields(TextFieldParser parser)
         {
             List<Weather> weathers = new List<Weather>();
 
@@ -36,7 +37,7 @@ namespace Automate.Utils
             return weathers;
         }
 
-        private static Weather ConvertFieldsToWeather(string[] fields)
+        private Weather ConvertFieldsToWeather(string[] fields)
         {
             Weather weather = new Weather()
             {
@@ -49,13 +50,13 @@ namespace Automate.Utils
             return weather;
         }
 
-        private static void SetupDelimiters(TextFieldParser parser)
+        private void SetupDelimiters(TextFieldParser parser)
         {
             parser.TextFieldType = FieldType.Delimited;
             parser.SetDelimiters(",");
         }
 
-        private static void RemoveHeaderFields(TextFieldParser parser)
+        private void RemoveHeaderFields(TextFieldParser parser)
         {
             parser.ReadFields();
         }
