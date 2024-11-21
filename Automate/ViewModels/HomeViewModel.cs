@@ -41,6 +41,8 @@ namespace Automate.ViewModels
 
             GoToCalendarCommand = new RelayCommand(GoToCalendar);
             SignOutCommand = new RelayCommand(SignOut);
+
+            CsvReader.ReadWeather();
         }
 
         public void GoToCalendar()
