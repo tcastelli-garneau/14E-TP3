@@ -63,6 +63,33 @@ namespace Automate.TestsNUnit.ViewModels
         }
 
         [Test]
+        public void WeatherPrompt_NoCurrentWeather_ReturnEmptyString()
+        {
+            Assert.That(homeViewModel.WeatherPrompt, Is.EqualTo(""));
+        }
+
+        [Test]
+        public void WeatherPrompt_CurrentWeatherNotNull_ReturnStringWithCurrentWeatherInfos()
+        {
+            Weather weather = new Weather() { Date = DateTime.Today, Humidity = 30, Luminosity = 33, Temperature = 10 };
+            homeViewModel.CurrentWeather = weather;
+
+            Assert.That(homeViewModel.WeatherPrompt.StartsWith("Météo"), Is.True);
+            Assert.That(homeViewModel.WeatherPrompt.Contains($"Température : {weather.Temperature}"), Is.True);
+            Assert.That(homeViewModel.WeatherPrompt.Contains($"Humidité : {weather.Humidity}"), Is.True);
+            Assert.That(homeViewModel.WeatherPrompt.Contains($"Luminiosité : {weather.Luminosity}"), Is.True);
+        }
+
+        [Test]
+        public void SignOut_NavigateToLogin()
+        {
+            homeViewModel.SignOut();
+
+            mockNavigationUtils.Verify(
+                x => x.NavigateToAndCloseCurrentWindow<LoginWindow>(It.IsAny<Window>()), Times.Once());
+        }
+
+        [Test]
         public void SignOut_AuthenticatedUserIsNull()
         {
             homeViewModel.SignOut();

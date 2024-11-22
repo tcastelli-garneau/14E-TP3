@@ -30,7 +30,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0" Background="LightGray" Margin="10" Padding="10">
-                    <TextBox Text="{Binding DoesTodayHasCriticalTask}"></TextBox>
+                    <TextBox Text="{Binding CriticalTaskMessage}"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Background="LightGray" Margin="10" Padding="10">
+                    <TextBox Text="{Binding WeatherPrompt}"></TextBox>
                 </Border>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">

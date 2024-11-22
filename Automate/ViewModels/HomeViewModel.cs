@@ -20,6 +20,7 @@ namespace Automate.ViewModels
         private readonly IWeatherReader weatherReader;
         private Window window;
 
+        private string criticalTaskMessage = "";
         public string CriticalTaskMessage
         {
             get
@@ -29,6 +30,7 @@ namespace Automate.ViewModels
 
                 return "";
             }
+            set { criticalTaskMessage = value; }
         }
         public string ToggleWeatherReadingMessage
         {
@@ -39,6 +41,22 @@ namespace Automate.ViewModels
 
                 return "Arrêter la lecture de la météo";
             }
+        }
+        private string weatherPrompt = "";
+        public string WeatherPrompt
+        {
+            get
+            {
+                if (CurrentWeather == null)
+                    return "";
+
+                return $"Météo :\n" +
+                    $"Date : {CurrentWeather.Date.DayOfWeek} {CurrentWeather.Date.ToString("d MMMM yyyy")}, {CurrentWeather.Date.ToString("HH:mm")}\n" +
+                    $"Température : {CurrentWeather.Temperature}°C\n" +
+                    $"Humidité : {CurrentWeather.Humidity}%\n" +
+                    $"Luminiosité : {CurrentWeather.Luminosity} lux";
+            }
+            set { weatherPrompt = value; }
         }
 
         public List<Weather> Weathers { get; set; }
@@ -103,6 +121,8 @@ namespace Automate.ViewModels
             readWeatherTimer = null;
             currentWeatherIndex = -1;
             CurrentWeather = null;
+
+            OnPropertyChanged(nameof(WeatherPrompt));
         }
 
         private void GetNextWeather(object? stateInfo)
@@ -113,6 +133,8 @@ namespace Automate.ViewModels
                 readWeatherTimer!.Dispose();
             else
                 CurrentWeather = Weathers[currentWeatherIndex];
+
+            OnPropertyChanged(nameof(WeatherPrompt));
         }
     }
 }
