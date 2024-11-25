@@ -154,5 +154,45 @@ namespace Automate.TestsNUnit.Utils.WeatherUtils
 
             Assert.That(result, Is.EqualTo("Le taux d'humidité est correct."));
         }
+
+        [Test]
+        public void GetLuminiosityTips_LightsOnAndLuminiosityTooHigh_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetLuminiosityTips(true, MAX_LUX_GOAL + 1);
+
+            Assert.That(result, Is.EqualTo("Le niveau de luminiosité est trop élevé. Veuillez éteindre les lumières."));
+        }
+
+        [Test]
+        public void GetLuminiosityTips_LightsOffAndLuminiosityTooHigh_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetLuminiosityTips(false, MAX_LUX_GOAL + 1);
+
+            Assert.That(result, Is.EqualTo("Le niveau de luminiosité est trop élevé. Aucune action supplémentaire recommandée."));
+        }
+
+        [Test]
+        public void GetLuminiosityTips_LightsOffAndLuminiosityTooLow_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetLuminiosityTips(false, MIN_LUX_GOAL - 1);
+
+            Assert.That(result, Is.EqualTo("Le niveau de luminiosité est trop bas. Veuillez allumer les lumières."));
+        }
+
+        [Test]
+        public void GetLuminiosityTips_LightsOnAndLuminiosityTooLow_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetLuminiosityTips(true, MIN_LUX_GOAL - 1);
+
+            Assert.That(result, Is.EqualTo("Le niveau de luminiosité est trop bas. Aucune action supplémentaire recommandée."));
+        }
+
+        [Test]
+        public void GetLuminiosityTips_LuminiosityIsCorrect_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetLuminiosityTips(true, MIN_LUX_GOAL + 1);
+
+            Assert.That(result, Is.EqualTo("Le niveau de luminiosité est correct."));
+        }
     }
 }
