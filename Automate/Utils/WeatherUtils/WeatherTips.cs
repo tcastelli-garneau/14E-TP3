@@ -64,7 +64,7 @@
             if (currentHumidity > MAX_HUMIDITY_GOAL)
                 return "Le taux d'humidité est trop élevé. Aucune action supplémentaire recommandée.";
 
-            if (currentHumidity < MAX_HUMIDITY_GOAL)
+            if (currentHumidity < MIN_HUMIDITY_GOAL)
                 return "Le taux d'humidité est trop bas. Aucune action supplémentaire recommandée.";
 
             return "Le taux d'humidité est correct.";

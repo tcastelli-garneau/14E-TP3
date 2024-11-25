@@ -82,5 +82,77 @@ namespace Automate.TestsNUnit.Utils.WeatherUtils
 
             Assert.That(result, Is.EqualTo("La température de la serre est correcte."));
         }
+
+        [Test]
+        public void GetHumidityTips_WateringOnAndVentilationOffAndHumidityTooHigh_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(true, false, MAX_HUMIDITY_GOAL + 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est trop élevé. Veuillez désactiver le système d'arrosage et activer le système de ventilation."));
+        }
+
+        [Test]
+        public void GetHumidityTips_WateringOnAndVentilationOnAndHumidityTooHigh_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(true, true, MAX_HUMIDITY_GOAL + 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est trop élevé. Veuillez désactiver le système d'arrosage."));
+        }
+
+        [Test]
+        public void GetHumidityTips_WateringOffAndVentilationOffAndHumidityTooHigh_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(false, false, MAX_HUMIDITY_GOAL + 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est trop élevé. Veuillez activer le système de ventilation."));
+        }
+
+        [Test]
+        public void GetHumidityTips_WateringOffAndVentilationOnAndHumidityTooHigh_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(false, true, MAX_HUMIDITY_GOAL + 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est trop élevé. Aucune action supplémentaire recommandée."));
+        }
+
+        [Test]
+        public void GetHumidityTips_WateringOffAndVentilationOnAndHumidityTooLow_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(false, true, MIN_HUMIDITY_GOAL - 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est trop bas. Veuillez activer le système d'arrosage et désactiver le système de ventilation."));
+        }
+
+        [Test]
+        public void GetHumidityTips_WateringOffAndVentilationOffAndHumidityTooLow_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(false, false, MIN_HUMIDITY_GOAL - 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est trop bas. Veuillez activer le système d'arrosage."));
+        }
+
+        [Test]
+        public void GetHumidityTips_WateringOnAndVentilationOnAndHumidityTooLow_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(true, true, MIN_HUMIDITY_GOAL - 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est trop bas. Veuillez désactiver le système de ventilation."));
+        }
+
+        [Test]
+        public void GetHumidityTips_WateringOnAndVentilationOffAndHumidityTooLow_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(true, false, MIN_HUMIDITY_GOAL - 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est trop bas. Aucune action supplémentaire recommandée."));
+        }
+
+        [Test]
+        public void GetHumidityTips_HumidityIsCorrect_ReturnCorrectMessage()
+        {
+            string result = WeatherTips.GetHumidityTips(true, false, MIN_HUMIDITY_GOAL + 1);
+
+            Assert.That(result, Is.EqualTo("Le taux d'humidité est correct."));
+        }
     }
 }
