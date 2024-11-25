@@ -4,7 +4,7 @@ using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 
-namespace Automate.Utils
+namespace Automate.Utils.WeatherUtils
 {
     public class WeatherReader : IWeatherReader
     {
