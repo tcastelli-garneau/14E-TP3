@@ -1,6 +1,6 @@
 ﻿namespace Automate.Utils.WeatherUtils
 {
-    public class WeatherTips
+    public static class WeatherTips
     {
         // source : https://drygair.com/fr/blog-fr/quelles-sont-les-conditions-ideales-pour-les-tomates-de-serre/
         const int MIN_TEMPERATURE_GOAL = 21;
@@ -12,7 +12,7 @@
         const int MIN_LUX_GOAL = 25000;
         const int MAX_LUX_GOAL = 45000;
 
-        public string GetTemperatureTips(bool isHeatingOn, bool isWindowOpen, int currentTemperature)
+        public static string GetTemperatureTips(bool isHeatingOn, bool isWindowOpen, int currentTemperature)
         {
             if (isHeatingOn && !isWindowOpen && currentTemperature > MAX_TEMPERATURE_GOAL)
                 return "La température de la serre est trop élevée. Veuillez éteindre le chauffage et/ou ouvrir les fenêtres.";
@@ -41,7 +41,7 @@
             return "La température de la serre est correcte.";
         }
 
-        public string GetHumidityTips(bool isWateringOn, bool isVentilationOn, int currentHumidity)
+        public static string GetHumidityTips(bool isWateringOn, bool isVentilationOn, int currentHumidity)
         {
             if (isWateringOn && !isVentilationOn && currentHumidity > MAX_HUMIDITY_GOAL)
                 return "Le taux d'humidité est trop élevé. Veuillez désactiver le système d'arrosage et activer le système de ventilation.";
@@ -68,6 +68,23 @@
                 return "Le taux d'humidité est trop bas. Aucune action supplémentaire recommandée.";
 
             return "Le taux d'humidité est correct.";
+        }
+
+        public static string GetLuminiosityTips(bool isLightsOn, int currentLuminiosity)
+        {
+            if (isLightsOn && currentLuminiosity > MAX_LUX_GOAL)
+                return "Le niveau de luminiosité est trop élevé. Veuillez éteindre les lumières.";
+
+            if (!isLightsOn && currentLuminiosity < MIN_LUX_GOAL)
+                return "Le niveau de luminiosité est trop bas. Veuillez allumer les lumières.";
+
+            if (currentLuminiosity > MAX_LUX_GOAL)
+                return "Le niveau de luminiosité est trop élevé. Aucune action supplémentaire recommandée.";
+
+            if (currentLuminiosity < MIN_LUX_GOAL)
+                return "Le niveau de luminiosité est trop bas. Aucune action supplémentaire recommandée.";
+
+            return "Le niveau de luminiosité est correct.";
         }
     }
 }
