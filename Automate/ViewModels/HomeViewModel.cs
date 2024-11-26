@@ -26,11 +26,8 @@ namespace Automate.ViewModels
             get => areLightsOpen;
             set
             {
-                if (areLightsOpen != value)
-                {
-                    areLightsOpen = value;
-                    OnPropertyChanged(nameof(AreLightsOpen));
-                }
+                areLightsOpen = value;
+                OnPropertyChanged(nameof(AreLightsOpen));
             }
         }
         private bool isHeatOpen;
@@ -39,11 +36,8 @@ namespace Automate.ViewModels
             get => isHeatOpen;
             set
             {
-                if (isHeatOpen != value)
-                {
-                    isHeatOpen = value;
-                    OnPropertyChanged(nameof(IsHeatOpen));
-                }
+                isHeatOpen = value;
+                OnPropertyChanged(nameof(IsHeatOpen));
             }
         }
         private bool areWindowsOpen;
@@ -52,11 +46,8 @@ namespace Automate.ViewModels
             get => areWindowsOpen;
             set
             {
-                if (areWindowsOpen != value)
-                {
-                    areWindowsOpen = value;
-                    OnPropertyChanged(nameof(AreWindowsOpen));
-                }
+                areWindowsOpen = value;
+                OnPropertyChanged(nameof(AreWindowsOpen));
             }
         }
         private bool isVentilationOpen;
@@ -65,24 +56,18 @@ namespace Automate.ViewModels
             get => isVentilationOpen;
             set
             {
-                if (isVentilationOpen != value)
-                {
-                    isVentilationOpen = value;
-                    OnPropertyChanged(nameof(IsVentilationOpen));
-                }
+                isVentilationOpen = value;
+                OnPropertyChanged(nameof(IsVentilationOpen));
             }
         }
-        private bool isWateringOpen; 
+        private bool isWateringOpen;
         public bool IsWateringOpen
         {
             get => isWateringOpen;
             set
             {
-                if (isWateringOpen != value)
-                {
-                    isWateringOpen = value;
-                    OnPropertyChanged(nameof(IsWateringOpen));
-                }
+                isWateringOpen = value;
+                OnPropertyChanged(nameof(IsWateringOpen));
             }
         }
         private string criticalTaskMessage = "";
