@@ -20,6 +20,56 @@ namespace Automate.ViewModels
         private readonly IWeatherReader weatherReader;
         private Window window;
 
+        private bool areLightsOpen;
+        public bool AreLightsOpen
+        {
+            get => areLightsOpen;
+            set
+            {
+                areLightsOpen = value;
+                OnPropertyChanged(nameof(AreLightsOpen));
+            }
+        }
+        private bool isHeatOpen;
+        public bool IsHeatOpen
+        {
+            get => isHeatOpen;
+            set
+            {
+                isHeatOpen = value;
+                OnPropertyChanged(nameof(IsHeatOpen));
+            }
+        }
+        private bool areWindowsOpen;
+        public bool AreWindowsOpen
+        {
+            get => areWindowsOpen;
+            set
+            {
+                areWindowsOpen = value;
+                OnPropertyChanged(nameof(AreWindowsOpen));
+            }
+        }
+        private bool isVentilationOpen;
+        public bool IsVentilationOpen
+        {
+            get => isVentilationOpen;
+            set
+            {
+                isVentilationOpen = value;
+                OnPropertyChanged(nameof(IsVentilationOpen));
+            }
+        }
+        private bool isWateringOpen;
+        public bool IsWateringOpen
+        {
+            get => isWateringOpen;
+            set
+            {
+                isWateringOpen = value;
+                OnPropertyChanged(nameof(IsWateringOpen));
+            }
+        }
         private string criticalTaskMessage = "";
         public string CriticalTaskMessage
         {
