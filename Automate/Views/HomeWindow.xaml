@@ -29,6 +29,12 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
+                <Border Grid.Column="0" Background="LightGray" Margin="10" Padding="10">
+                    <TextBox Text="{Binding CriticalTaskMessage}"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Background="LightGray" Margin="10" Padding="10">
+                    <TextBox Text="{Binding WeatherPrompt}"></TextBox>
+                </Border>
                 <ui:ToggleSwitch Margin="0,93,0,0" VerticalAlignment="Top" OffContent="Lumière fermée" OnContent="Lumière allumée" ></ui:ToggleSwitch>
                 <ui:ToggleSwitch VerticalAlignment="Top" OffContent="Chauffage fermé" OnContent="Chauffage allumé"></ui:ToggleSwitch>
                 <ui:ToggleSwitch VerticalAlignment="Top" Margin="0,125,0,0" OffContent="Arrosage fermé" OnContent="Arrosage ouvert"></ui:ToggleSwitch>
@@ -38,16 +44,8 @@
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
                     <Button Content="Cycle de culture" Height="50" Margin="0,0,0,10" Width="174" Command="{Binding GoToCalendarCommand}"/>
                     <Button Content="Inventaire" Height="50" Margin="0,0,0,10" RenderTransformOrigin="0.5,0.5" Width="175" IsEnabled="False">
-                        <Button.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform AngleY="0"/>
-                                <RotateTransform/>
-                                <TranslateTransform Y="0"/>
-                            </TransformGroup>
-                        </Button.RenderTransform>
                     </Button>
-                    <Button Content="Contrôle du climat" Height="50" Width="175" IsEnabled="False"/>
+                    <Button Content="{Binding ToggleWeatherReadingMessage}" Height="50" Width="175" Command="{Binding ToggleWeatherReadingCommand}"/>
                     <Button Content="Déconnexion" Height="50" Width="175" Margin="0,10,0,0" Command="{Binding SignOutCommand}"/>
                 </StackPanel>
             </Grid>

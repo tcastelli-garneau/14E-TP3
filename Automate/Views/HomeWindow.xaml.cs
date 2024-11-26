@@ -12,7 +12,7 @@ namespace Automate.Views
         public HomeWindow()
         {
             InitializeComponent();
-            DataContext = new HomeViewModel(this, new NavigationUtils(), Environment.tasksServices);
+            DataContext = new HomeViewModel(this, new NavigationUtils(), Environment.tasksServices, new WeatherReader());
         }
     }
 }
