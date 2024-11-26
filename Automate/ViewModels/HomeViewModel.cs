@@ -20,6 +20,71 @@ namespace Automate.ViewModels
         private readonly IWeatherReader weatherReader;
         private Window window;
 
+        private bool areLightsOpen;
+        public bool AreLightsOpen
+        {
+            get => areLightsOpen;
+            set
+            {
+                if (areLightsOpen != value)
+                {
+                    areLightsOpen = value;
+                    OnPropertyChanged(nameof(AreLightsOpen));
+                }
+            }
+        }
+        private bool isHeatOpen;
+        public bool IsHeatOpen
+        {
+            get => isHeatOpen;
+            set
+            {
+                if (isHeatOpen != value)
+                {
+                    isHeatOpen = value;
+                    OnPropertyChanged(nameof(IsHeatOpen));
+                }
+            }
+        }
+        private bool areWindowsOpen;
+        public bool AreWindowsOpen
+        {
+            get => areWindowsOpen;
+            set
+            {
+                if (areWindowsOpen != value)
+                {
+                    areWindowsOpen = value;
+                    OnPropertyChanged(nameof(AreWindowsOpen));
+                }
+            }
+        }
+        private bool isVentilationOpen;
+        public bool IsVentilationOpen
+        {
+            get => isVentilationOpen;
+            set
+            {
+                if (isVentilationOpen != value)
+                {
+                    isVentilationOpen = value;
+                    OnPropertyChanged(nameof(IsVentilationOpen));
+                }
+            }
+        }
+        private bool isWateringOpen; 
+        public bool IsWateringOpen
+        {
+            get => isWateringOpen;
+            set
+            {
+                if (isWateringOpen != value)
+                {
+                    isWateringOpen = value;
+                    OnPropertyChanged(nameof(IsWateringOpen));
+                }
+            }
+        }
         private string criticalTaskMessage = "";
         public string CriticalTaskMessage
         {

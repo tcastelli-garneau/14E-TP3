@@ -35,11 +35,11 @@
                 <Border Grid.Column="0" Background="LightGray" Margin="10" Padding="10">
                     <TextBox Text="{Binding WeatherPrompt}" Margin="509,-188,-214,292"></TextBox>
                 </Border>
-                <ui:ToggleSwitch Margin="26,93,0,0" VerticalAlignment="Top" OffContent="Lumière fermée" OnContent="Lumière allumée" ></ui:ToggleSwitch>
-                <ui:ToggleSwitch VerticalAlignment="Top" OffContent="Chauffage fermé" OnContent="Chauffage allumé" Margin="27,157,0,0"></ui:ToggleSwitch>
-                <ui:ToggleSwitch VerticalAlignment="Top" Margin="26,125,0,0" OffContent="Arrosage fermé" OnContent="Arrosage ouvert"></ui:ToggleSwitch>
-                <ui:ToggleSwitch VerticalAlignment="Top" Margin="26,29,0,0" OffContent="Fenêtres fermées " OnContent="Fenêtres ouvertes"></ui:ToggleSwitch>
-                <ui:ToggleSwitch VerticalAlignment="Top" Margin="26,61,0,0" OffContent="Ventilation fermée" OnContent="Ventilation ouvert"></ui:ToggleSwitch>
+                <ui:ToggleSwitch Margin="23,0,0,0" OffContent="Lumière fermée" OnContent="Lumière allumée" RenderTransformOrigin="0.511,0.99" />
+                <ui:ToggleSwitch VerticalAlignment="Top" OffContent="Chauffage fermé" OnContent="Chauffage allumé" Margin="23,198,0,0"></ui:ToggleSwitch>
+                <ui:ToggleSwitch VerticalAlignment="Top" Margin="23,153,0,0" OffContent="Arrosage fermé" OnContent="Arrosage ouvert"></ui:ToggleSwitch>
+                <ui:ToggleSwitch VerticalAlignment="Top" Margin="23,18,0,0" OffContent="Fenêtres fermées " OnContent="Fenêtres ouvertes"></ui:ToggleSwitch>
+                <ui:ToggleSwitch VerticalAlignment="Top" Margin="23,64,0,0" OffContent="Ventilation fermée" OnContent="Ventilation ouvert"></ui:ToggleSwitch>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
                     <Button Content="Cycle de culture" Height="50" Margin="0,0,0,10" Width="174" Command="{Binding GoToCalendarCommand}"/>
