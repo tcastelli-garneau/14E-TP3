@@ -8,11 +8,13 @@ namespace Automate.Utils.WeatherUtils
 {
     public class WeatherReader : IWeatherReader
     {
+        public const string TEMP_DATA_PATH = @".\TempData.csv";
+
         public List<Weather> ReadWeather()
         {
             List<Weather> weathers = new List<Weather>();
 
-            using (TextFieldParser parser = new TextFieldParser(Environment.tempDataPath))
+            using (TextFieldParser parser = new TextFieldParser(TEMP_DATA_PATH))
             {
                 SetupDelimiters(parser);
                 RemoveHeaderFields(parser);
