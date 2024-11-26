@@ -247,7 +247,7 @@ namespace Automate.ViewModels
             if (CurrentWeather == null)
                 humidityTips = "";
             else
-                humidityTips = WeatherTips.GetHumidityTips(isWateringOpen, isVentilationOpen, CurrentWeather.Humidity);
+                humidityTips = WeatherTips.GetHumidityTips(isWateringOpen, isVentilationOpen, CurrentWeather.Humidity, CurrentWeather.Date);
         }
 
         private void UpdateTemperatureTips()
@@ -263,7 +263,7 @@ namespace Automate.ViewModels
             if (CurrentWeather == null)
                 luminiosityTips = "";
             else
-                luminiosityTips = WeatherTips.GetLuminiosityTips(areLightsOpen, CurrentWeather.Luminosity);
+                luminiosityTips = WeatherTips.GetLuminiosityTips(areLightsOpen, CurrentWeather.Luminosity, CurrentWeather.Date);
         }
     }
 }
