@@ -75,7 +75,7 @@ namespace Automate.TestsNUnit.ViewModels
             Weather weather = new Weather() { Date = DateTime.Today, Humidity = 30, Luminosity = 33, Temperature = 10 };
             homeViewModel.CurrentWeather = weather;
 
-            Assert.That(homeViewModel.WeatherPrompt.StartsWith("Météo"), Is.True);
+            Assert.That(homeViewModel.WeatherPrompt.StartsWith("Condition climatique de la serre"), Is.True);
             Assert.That(homeViewModel.WeatherPrompt.Contains($"Température : {weather.Temperature}"), Is.True);
             Assert.That(homeViewModel.WeatherPrompt.Contains($"Humidité : {weather.Humidity}"), Is.True);
             Assert.That(homeViewModel.WeatherPrompt.Contains($"Luminiosité : {weather.Luminosity}"), Is.True);

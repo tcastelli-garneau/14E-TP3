@@ -105,7 +105,7 @@ namespace Automate.ViewModels
                 if (readWeatherTimer == null)
                     return "Lire la météo";
 
-                return "Arrêter la lecture de la météo";
+                return "Arrêter la lecture";
             }
         }
         private string weatherPrompt = "";
@@ -116,7 +116,7 @@ namespace Automate.ViewModels
                 if (CurrentWeather == null)
                     return "";
 
-                return $"Météo :\n" +
+                return $"Condition climatique de la serre :\n" +
                     $"Date : {CurrentWeather.Date.DayOfWeek} {CurrentWeather.Date.ToString("d MMMM yyyy")}, {CurrentWeather.Date.ToString("HH:mm")}\n" +
                     $"Température : {CurrentWeather.Temperature}°C\n" +
                     $"Humidité : {CurrentWeather.Humidity}%\n" +
