@@ -4,6 +4,7 @@ using Automate.Models;
 using Automate.ViewModels;
 using Automate.Views;
 using Moq;
+using NUnit.Framework.Internal;
 using System.ComponentModel;
 using System.Windows;
 
@@ -74,10 +75,140 @@ namespace Automate.TestsNUnit.ViewModels
             Weather weather = new Weather() { Date = DateTime.Today, Humidity = 30, Luminosity = 33, Temperature = 10 };
             homeViewModel.CurrentWeather = weather;
 
-            Assert.That(homeViewModel.WeatherPrompt.StartsWith("Météo"), Is.True);
+            Assert.That(homeViewModel.WeatherPrompt.StartsWith("Condition climatique de la serre"), Is.True);
             Assert.That(homeViewModel.WeatherPrompt.Contains($"Température : {weather.Temperature}"), Is.True);
             Assert.That(homeViewModel.WeatherPrompt.Contains($"Humidité : {weather.Humidity}"), Is.True);
             Assert.That(homeViewModel.WeatherPrompt.Contains($"Luminiosité : {weather.Luminosity}"), Is.True);
+        }
+
+        [Test]
+        public void AreLightsOpen_SetValue_SelfOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "AreLightsOpen";
+
+            homeViewModel.AreLightsOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void AreLightsOpen_SetValue_LuminiosityTipsOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "LuminiosityTips";
+
+            homeViewModel.AreLightsOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void IsHeatOpen_SetValue_SelfOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "IsHeatOpen";
+
+            homeViewModel.IsHeatOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void IsHeatOpen_SetValue_TemperatureTipsOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "TemperatureTips";
+
+            homeViewModel.IsHeatOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void AreWindowsOpen_SetValue_SelfOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "AreWindowsOpen";
+
+            homeViewModel.AreWindowsOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void AreWindowsOpen_SetValue_TemperatureTipsOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "TemperatureTips";
+
+            homeViewModel.AreWindowsOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void IsVentilationOpen_SetValue_SelfOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "IsVentilationOpen";
+
+            homeViewModel.IsVentilationOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void IsVentilationOpen_SetValue_HumidityTipsOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "HumidityTips";
+
+            homeViewModel.IsVentilationOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void IsWateringOpen_SetValue_SelfOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "IsWateringOpen";
+
+            homeViewModel.IsWateringOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
+        }
+
+        [Test]
+        public void IsWateringOpen_SetValue_HumidityTipsOnPropertyChangedIsInvoked()
+        {
+            const string propertyName = "HumidityTips";
+
+            homeViewModel.IsWateringOpen = true;
+
+            mockPropertyChanged.Verify(x =>
+                x.Invoke(It.IsAny<object>(), It.Is<PropertyChangedEventArgs>(args => args.PropertyName == propertyName)),
+                Times.Once()
+            );
         }
 
         [Test]

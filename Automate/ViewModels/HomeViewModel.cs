@@ -3,6 +3,7 @@ using Automate.Abstract.Utils;
 using Automate.Models;
 using Automate.Services.Commands;
 using Automate.Utils;
+using Automate.Utils.WeatherUtils;
 using Automate.Views;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,9 @@ namespace Automate.ViewModels
             {
                 areLightsOpen = value;
                 OnPropertyChanged(nameof(AreLightsOpen));
+
+                UpdateLuminiosityTips();
+                OnPropertyChanged(nameof(LuminiosityTips));
             }
         }
         private bool isHeatOpen;
@@ -38,6 +42,9 @@ namespace Automate.ViewModels
             {
                 isHeatOpen = value;
                 OnPropertyChanged(nameof(IsHeatOpen));
+
+                UpdateTemperatureTips();
+                OnPropertyChanged(nameof(TemperatureTips));
             }
         }
         private bool areWindowsOpen;
@@ -48,6 +55,9 @@ namespace Automate.ViewModels
             {
                 areWindowsOpen = value;
                 OnPropertyChanged(nameof(AreWindowsOpen));
+
+                UpdateTemperatureTips();
+                OnPropertyChanged(nameof(TemperatureTips));
             }
         }
         private bool isVentilationOpen;
@@ -58,6 +68,9 @@ namespace Automate.ViewModels
             {
                 isVentilationOpen = value;
                 OnPropertyChanged(nameof(IsVentilationOpen));
+
+                UpdateHumidityTips();
+                OnPropertyChanged(nameof(HumidityTips));
             }
         }
         private bool isWateringOpen;
@@ -68,6 +81,9 @@ namespace Automate.ViewModels
             {
                 isWateringOpen = value;
                 OnPropertyChanged(nameof(IsWateringOpen));
+
+                UpdateHumidityTips();
+                OnPropertyChanged(nameof(HumidityTips));
             }
         }
         private string criticalTaskMessage = "";
@@ -89,7 +105,7 @@ namespace Automate.ViewModels
                 if (readWeatherTimer == null)
                     return "Lire la météo";
 
-                return "Arrêter la lecture de la météo";
+                return "Arrêter la lecture";
             }
         }
         private string weatherPrompt = "";
@@ -100,13 +116,44 @@ namespace Automate.ViewModels
                 if (CurrentWeather == null)
                     return "";
 
-                return $"Météo :\n" +
+                return $"Condition climatique de la serre :\n" +
                     $"Date : {CurrentWeather.Date.DayOfWeek} {CurrentWeather.Date.ToString("d MMMM yyyy")}, {CurrentWeather.Date.ToString("HH:mm")}\n" +
                     $"Température : {CurrentWeather.Temperature}°C\n" +
                     $"Humidité : {CurrentWeather.Humidity}%\n" +
                     $"Luminiosité : {CurrentWeather.Luminosity} lux";
             }
             set { weatherPrompt = value; }
+        }
+
+        private string temperatureTips = "";
+        public string TemperatureTips
+        {
+            get
+            {
+                UpdateTemperatureTips();
+                return temperatureTips;
+            }
+            set { temperatureTips = value; }
+        }
+        private string humidityTips = "";
+        public string HumidityTips
+        {
+            get
+            {
+                UpdateHumidityTips();
+                return humidityTips;
+            }
+            set { humidityTips = value; }
+        }
+        private string luminiosityTips = "";
+        public string LuminiosityTips
+        {
+            get
+            {
+                UpdateLuminiosityTips();
+                return luminiosityTips;
+            }
+            set { luminiosityTips = value; }
         }
 
         public List<Weather> Weathers { get; set; }
@@ -172,7 +219,7 @@ namespace Automate.ViewModels
             currentWeatherIndex = -1;
             CurrentWeather = null;
 
-            OnPropertyChanged(nameof(WeatherPrompt));
+            OnCurrentWeatherChange();
         }
 
         private void GetNextWeather(object? stateInfo)
@@ -184,7 +231,39 @@ namespace Automate.ViewModels
             else
                 CurrentWeather = Weathers[currentWeatherIndex];
 
+            OnCurrentWeatherChange();
+        }
+
+        private void OnCurrentWeatherChange()
+        {
             OnPropertyChanged(nameof(WeatherPrompt));
+            OnPropertyChanged(nameof(TemperatureTips));
+            OnPropertyChanged(nameof(HumidityTips));
+            OnPropertyChanged(nameof(LuminiosityTips));
+        }
+
+        private void UpdateHumidityTips()
+        {
+            if (CurrentWeather == null)
+                humidityTips = "";
+            else
+                humidityTips = WeatherTips.GetHumidityTips(isWateringOpen, isVentilationOpen, CurrentWeather.Humidity, CurrentWeather.Date);
+        }
+
+        private void UpdateTemperatureTips()
+        {
+            if (CurrentWeather == null)
+                temperatureTips = "";
+            else
+                temperatureTips = WeatherTips.GetTemperatureTips(isHeatOpen, areWindowsOpen, CurrentWeather.Temperature);
+        }
+
+        private void UpdateLuminiosityTips()
+        {
+            if (CurrentWeather == null)
+                luminiosityTips = "";
+            else
+                luminiosityTips = WeatherTips.GetLuminiosityTips(areLightsOpen, CurrentWeather.Luminosity, CurrentWeather.Date);
         }
     }
 }
