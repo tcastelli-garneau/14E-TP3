@@ -19,6 +19,12 @@ namespace Automate.TestsNUnit.Utils.WeatherUtils
         DateTime nightTime = new DateTime(2024, 11, 26, 1, 0, 0);
 
         [Test]
+        public void FakeTestForPipeline()
+        {
+            Assert.IsFalse(true);
+        }
+
+        [Test]
         public void GetTemperatureTips_HeatingOnAndWindowsClosedAndTemperatureTooHot_ReturnCorrectMessage()
         {
             string result = WeatherTips.GetTemperatureTips(true, false, MAX_TEMPERATURE_GOAL + 1);
