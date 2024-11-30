@@ -1,4 +1,5 @@
 # TP3_14E_A24 - Automate
+![example workflow](https://github.com/tcastelli-garneau/14E-TP3/actions/workflows/build_test_issue.yml/badge.svg?branch=main&event=push)
 ## Étudiant
 Thibault Castelli - 2231070
 
