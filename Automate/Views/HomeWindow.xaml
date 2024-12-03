@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
-        Title="GreenTech Serres" Height="482" Width="800" Background="#E0E0E0">
+        Title="GreenTech Serres" Height="482" Width="800"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Grid Margin="10">
         <Grid VerticalAlignment="Top" Height="108" Background="#D3D3D3">
             <Grid.ColumnDefinitions>
@@ -47,11 +49,10 @@
                 <ui:ToggleSwitch IsOn="{Binding IsVentilationOpen}" Margin="23,0,0,0" OffContent="Ventilation fermée" OnContent="Ventilation ouvert"/>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
-                    <Button Content="Cycle de culture" Height="50" Margin="0,0,0,10" Width="174" Command="{Binding GoToCalendarCommand}"/>
-                    <Button Content="Inventaire" Height="50" Margin="0,0,0,10" RenderTransformOrigin="0.5,0.5" Width="175" IsEnabled="False">
-                    </Button>
-                    <Button Content="{Binding ToggleWeatherReadingMessage}" Height="50" Width="175" Command="{Binding ToggleWeatherReadingCommand}"/>
-                    <Button Content="Déconnexion" Height="50" Width="175" Margin="0,10,0,0" Command="{Binding SignOutCommand}"/>
+                    <Button Content="Cycle de culture" Height="50" Margin="0,0,0,10" Width="174" Command="{Binding GoToCalendarCommand}" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <Button Content="Inventaire" Height="50" Margin="0,0,0,10" RenderTransformOrigin="0.5,0.5" Width="175" IsEnabled="False" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <Button Content="{Binding ToggleWeatherReadingMessage}" Height="50" Width="175" Command="{Binding ToggleWeatherReadingCommand}" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <Button Content="Déconnexion" Height="50" Width="175" Margin="0,10,0,0" Command="{Binding SignOutCommand}" Style="{StaticResource MaterialDesignRaisedButton}"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Automate.Views"
         mc:Ignorable="d"
-        Title="TaskFormWindow" Height="361" Width="301">
+        Title="TaskFormWindow" Height="361" Width="301"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Grid Margin="20">
         <StackPanel>
             <TextBlock Text="Ajouter / Modifier Événement" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
@@ -17,8 +19,8 @@
             <TextBox x:Name="eventDateTextBox" Text="{Binding EventDate}" IsReadOnly="True" Width="200" Margin="0 10" HorizontalAlignment="Left" />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,20,0,0">
-                <Button Content="Ajouter" Command="{Binding AddTaskCommand}" Width="75" Margin="5"/>
-                <Button Content="Annuler" Command="{Binding CancelCommand}" Width="75" Margin="5"/>
+                <Button Content="Ajouter" Command="{Binding AddTaskCommand}" Width="85" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <Button Content="Annuler" Command="{Binding CancelCommand}" Width="85" Margin="5" Style="{StaticResource MaterialDesignRaisedButton}"/>
             </StackPanel>
             <TextBlock Foreground="#c50500" 
                Text="{Binding ErrorMessages}"
