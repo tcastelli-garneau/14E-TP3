@@ -26,7 +26,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
       
     - name: Publish
-      run: dotnet publish --configuration Release --output ./publish
+      run: dotnet publish --configuration Release --output ./publish --runtime win-x64 -p:PublishSingleFile=true --self-contained true
 
     - name: Create GitHub Release
       id: create_release
@@ -45,9 +45,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./publish/TP3.zip
-        asset_name: TP3.zip
-        asset_content_type: application/zip
+        asset_path: ./publish/TP3.exe
+        asset_name: TP3.exe
+        asset_content_type: application/octet-stream
 
   create_issue:
     needs: build
