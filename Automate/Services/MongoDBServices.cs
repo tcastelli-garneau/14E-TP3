@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Collections.Generic;
 using MongoDB.Bson;
 using Automate.Abstract.Models;
+using System.Configuration;
 
 namespace Automate.Services
 {
@@ -15,7 +16,7 @@ namespace Automate.Services
 
         public MongoDBServices(string databaseName)
         {
-            MongoClient client = new MongoClient(DBConstants.DB_URL);
+            MongoClient client = new MongoClient(ConfigurationManager.AppSettings["ConnectionString"]);
             mongoDatabase = client.GetDatabase(databaseName);
         }
         
