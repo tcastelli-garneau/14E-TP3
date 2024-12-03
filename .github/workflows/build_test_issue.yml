@@ -1,6 +1,9 @@
 name: Build_Tests_Issue
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches: [ "main" ]
 
