@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
-using Automate.Utils.Constants;
 using Automate.Abstract.Services;
 using System;
 using System.Linq.Expressions;
 using System.Collections.Generic;
 using MongoDB.Bson;
 using Automate.Abstract.Models;
+using System.Configuration;
+using Automate.Utils.Constants;
 
 namespace Automate.Services
 {
@@ -15,7 +16,10 @@ namespace Automate.Services
 
         public MongoDBServices(string databaseName)
         {
-            MongoClient client = new MongoClient(DBConstants.DB_URL);
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"] 
+                ?? DBConstants.DEFAULT_CONNECTION_STRING;
+
+            MongoClient client = new MongoClient(connectionString);
             mongoDatabase = client.GetDatabase(databaseName);
         }
         

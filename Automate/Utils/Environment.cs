@@ -10,6 +10,11 @@ namespace Automate.Utils
         public static MongoDBServices mongoService = new MongoDBServices(DBConstants.DB_NAME);
         public static UserServices userServices = new UserServices(mongoService);
         public static TasksServices tasksServices = new TasksServices(mongoService);
+
         public static User? authenticatedUser;
+        public static EnvironmentControls? environmentControls;
+
+        public static string tempDataPath =
+            Directory.GetParent(System.Environment.CurrentDirectory)!.Parent!.Parent + @"\TempData.csv";
     }
 }
