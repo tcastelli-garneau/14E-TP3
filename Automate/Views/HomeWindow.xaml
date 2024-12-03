@@ -42,7 +42,7 @@
                 <TextBlock Text="{Binding HumidityTips}" Margin="317,91,21,91" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
                 <TextBlock Text="{Binding LuminiosityTips}" Margin="316,164,21,18" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
 
-                <ui:ToggleSwitch IsOn="{Binding AreLightsOpen}" Margin="23,198,0,0" OffContent="Lumière fermée" OnContent="Lumière allumée" VerticalAlignment="Top" />
+                <ui:ToggleSwitch IsOn="{Binding AreLightsOpen}" Margin="23,198,0,0" OffContent="Lumière fermée" OnContent="Lumière allumée" VerticalAlignment="Top" Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}" />
                 <ui:ToggleSwitch IsOn="{Binding IsHeatOpen}" VerticalAlignment="Top" OffContent="Chauffage fermé" OnContent="Chauffage allumé" Margin="23,64,0,0"></ui:ToggleSwitch>
                 <ui:ToggleSwitch IsOn="{Binding IsWateringOpen}" VerticalAlignment="Top" Margin="23,153,0,0" OffContent="Arrosage fermé" OnContent="Arrosage ouvert"></ui:ToggleSwitch>
                 <ui:ToggleSwitch IsOn="{Binding AreWindowsOpen}" VerticalAlignment="Top" Margin="23,18,0,0" OffContent="Fenêtres fermées " OnContent="Fenêtres ouvertes"></ui:ToggleSwitch>
