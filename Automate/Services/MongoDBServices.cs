@@ -16,7 +16,9 @@ namespace Automate.Services
 
         public MongoDBServices(string databaseName)
         {
-            string connectionString = ConfigurationManager.AppSettings["ConnectionString"] ?? DBConstants.DEFAULT_CONNECTION_STRING;
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"] 
+                ?? DBConstants.DEFAULT_CONNECTION_STRING;
+
             MongoClient client = new MongoClient(connectionString);
             mongoDatabase = client.GetDatabase(databaseName);
         }
