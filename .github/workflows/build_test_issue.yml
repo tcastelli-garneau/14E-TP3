@@ -29,7 +29,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
       
     - name: Publish
-      run: dotnet publish --configuration Release --output ./publish --runtime win-x64 -p:PublishSingleFile=true --self-contained true
+      run: dotnet publish Automate/Automate.csproj --configuration Release --output ./publish --runtime win-x64 -p:PublishSingleFile=true --self-contained true
 
     - name: Create GitHub Release
       id: create_release
