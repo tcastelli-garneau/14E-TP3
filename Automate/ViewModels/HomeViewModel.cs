@@ -24,62 +24,60 @@ namespace Automate.ViewModels
         private bool areLightsOpen;
         public bool AreLightsOpen
         {
-            get => areLightsOpen;
+            get => Environment.environmentControls!.AreLightsOpen;
             set
             {
                 areLightsOpen = value;
+                Environment.environmentControls!.AreLightsOpen = value;
                 OnPropertyChanged(nameof(AreLightsOpen));
 
                 UpdateLuminiosityTips();
                 OnPropertyChanged(nameof(LuminiosityTips));
+
             }
         }
-        private bool isHeatOpen;
         public bool IsHeatOpen
         {
-            get => isHeatOpen;
+            get => Environment.environmentControls!.IsHeatOpen;
             set
             {
-                isHeatOpen = value;
+                Environment.environmentControls!.IsHeatOpen = value;
                 OnPropertyChanged(nameof(IsHeatOpen));
 
                 UpdateTemperatureTips();
                 OnPropertyChanged(nameof(TemperatureTips));
             }
         }
-        private bool areWindowsOpen;
         public bool AreWindowsOpen
         {
-            get => areWindowsOpen;
+            get => Environment.environmentControls!.AreWindowsOpen;
             set
             {
-                areWindowsOpen = value;
+                Environment.environmentControls!.AreWindowsOpen = value;
                 OnPropertyChanged(nameof(AreWindowsOpen));
 
                 UpdateTemperatureTips();
                 OnPropertyChanged(nameof(TemperatureTips));
             }
         }
-        private bool isVentilationOpen;
         public bool IsVentilationOpen
         {
-            get => isVentilationOpen;
+            get => Environment.environmentControls!.IsVentilationOpen;
             set
             {
-                isVentilationOpen = value;
+                Environment.environmentControls!.IsVentilationOpen = value;
                 OnPropertyChanged(nameof(IsVentilationOpen));
 
                 UpdateHumidityTips();
                 OnPropertyChanged(nameof(HumidityTips));
             }
         }
-        private bool isWateringOpen;
         public bool IsWateringOpen
         {
-            get => isWateringOpen;
+            get => Environment.environmentControls!.IsWateringOpen;
             set
             {
-                isWateringOpen = value;
+                Environment.environmentControls!.IsWateringOpen = value;
                 OnPropertyChanged(nameof(IsWateringOpen));
 
                 UpdateHumidityTips();
@@ -181,6 +179,9 @@ namespace Automate.ViewModels
             ToggleWeatherReadingCommand = new RelayCommand(ToggleWeatherReading);
 
             Weathers = this.weatherReader.ReadWeather();
+
+            if (Environment.environmentControls == null)
+                Environment.environmentControls = new EnvironmentControls();
         }
 
         public void GoToCalendar()
@@ -247,7 +248,9 @@ namespace Automate.ViewModels
             if (CurrentWeather == null)
                 humidityTips = "";
             else
-                humidityTips = WeatherTips.GetHumidityTips(isWateringOpen, isVentilationOpen, CurrentWeather.Humidity, CurrentWeather.Date);
+                humidityTips = WeatherTips.GetHumidityTips(
+                    Environment.environmentControls!.IsWateringOpen, Environment.environmentControls!.IsVentilationOpen, 
+                    CurrentWeather.Humidity, CurrentWeather.Date);
         }
 
         private void UpdateTemperatureTips()
@@ -255,7 +258,9 @@ namespace Automate.ViewModels
             if (CurrentWeather == null)
                 temperatureTips = "";
             else
-                temperatureTips = WeatherTips.GetTemperatureTips(isHeatOpen, areWindowsOpen, CurrentWeather.Temperature);
+                temperatureTips = WeatherTips.GetTemperatureTips(
+                    Environment.environmentControls!.IsHeatOpen, Environment.environmentControls!.AreWindowsOpen, 
+                    CurrentWeather.Temperature);
         }
 
         private void UpdateLuminiosityTips()
@@ -263,7 +268,8 @@ namespace Automate.ViewModels
             if (CurrentWeather == null)
                 luminiosityTips = "";
             else
-                luminiosityTips = WeatherTips.GetLuminiosityTips(areLightsOpen, CurrentWeather.Luminosity, CurrentWeather.Date);
+                luminiosityTips = WeatherTips.GetLuminiosityTips(Environment.environmentControls!.AreLightsOpen, 
+                    CurrentWeather.Luminosity, CurrentWeather.Date);
         }
     }
 }
