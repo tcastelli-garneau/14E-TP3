@@ -11,7 +11,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Grid Margin="10">
-        <Grid VerticalAlignment="Top" Height="108" Background="DarkGray">
+        <Grid VerticalAlignment="Top" Height="108" Background="#7f7f7f">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="200" />
@@ -31,10 +31,10 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Background="DarkGray" Margin="10" Padding="10">
+                <Border Grid.Column="0" Background="#7f7f7f" Margin="10" Padding="10">
                     <TextBlock Foreground="White" Text="{Binding CriticalTaskMessage}"></TextBlock>
                 </Border>
-                <Border Grid.Column="0" Background="DarkGray" Margin="10" Padding="10">
+                <Border Grid.Column="0" Background="#7f7f7f" Margin="10" Padding="10">
                     <TextBlock Foreground="White" Text="{Binding WeatherPrompt}" Margin="509,-188,-214,292" VerticalAlignment="Center"></TextBlock>
                 </Border>
 
