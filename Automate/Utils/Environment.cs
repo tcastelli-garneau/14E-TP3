@@ -11,5 +11,8 @@ namespace Automate.Utils
         public static UserServices userServices = new UserServices(mongoService);
         public static TasksServices tasksServices = new TasksServices(mongoService);
         public static User? authenticatedUser;
+
+        public static string tempDataPath =
+            Directory.GetParent(System.Environment.CurrentDirectory)!.Parent!.Parent + @"\TempData.csv";
     }
 }
