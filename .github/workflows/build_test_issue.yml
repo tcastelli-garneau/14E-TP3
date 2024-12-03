@@ -49,8 +49,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./publish/TP3.exe
-        asset_name: TP3.exe
+        asset_path: ./publish/Automate.exe
+        asset_name: Automate.exe
         asset_content_type: application/octet-stream
 
   create_issue:
