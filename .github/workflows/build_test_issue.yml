@@ -30,7 +30,8 @@ jobs:
       
     - name: Publish
       run: dotnet publish Automate/Automate.csproj --configuration Release --output ./publish --runtime win-x64 -p:PublishSingleFile=true --self-contained true
-
+    - name: List Publish Directory
+      run: ls -R ./publish
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
