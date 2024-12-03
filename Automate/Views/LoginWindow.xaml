@@ -10,7 +10,9 @@
         mc:Ignorable="d"
         Title="LoginWindow" Height="513" Width="800"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True">
+        ui:WindowHelper.UseModernWindowStyle="True"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Window.Resources>
         <utils:BoolToColorConverter x:Key="BoolToColorConverter"/>
 
@@ -44,7 +46,8 @@
                     Height="43" 
                     Margin="10" 
                     Command="{Binding AuthenticateCommand}"
-                    HorizontalAlignment="Center"/>
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource MaterialDesignRaisedButton}"/>
             <TextBlock Foreground="#c50500" 
                        Text="{Binding ErrorMessages}"
                        Width="400" Height="106" 

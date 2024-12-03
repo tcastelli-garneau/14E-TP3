@@ -7,21 +7,23 @@
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
-        Title="GreenTech Serres" Height="482" Width="800" Background="#E0E0E0">
+        Title="GreenTech Serres" Height="482" Width="800"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}">
     <Grid Margin="10">
-        <Grid VerticalAlignment="Top" Height="108" Background="#D3D3D3">
+        <Grid VerticalAlignment="Top" Height="108" Background="#7f7f7f">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="200" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="GreenTech Serres" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" Margin="10,0,90,0" />
+            <TextBlock Foreground="White" Text="GreenTech Serres" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Grid.ColumnSpan="2" Margin="10,0,90,0" />
         </Grid>
 
         <StackPanel Margin="0,120,0,0">
-            <TextBlock Text="Tableau de bord" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"/>
+            <TextBlock Foreground="White"  Text="Tableau de bord" FontSize="20" FontWeight="Bold" Margin="10,0,0,10"/>
 
-            <Border BorderBrush="Black" BorderThickness="0,0,0,1" Margin="0,0,0,10"/>
+            <Border BorderBrush="White" BorderThickness="0,0,0,1" Margin="0,0,0,10"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -29,29 +31,28 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Background="LightGray" Margin="10" Padding="10">
-                    <TextBlock Text="{Binding CriticalTaskMessage}"></TextBlock>
+                <Border Grid.Column="0" Background="#7f7f7f" Margin="10" Padding="10">
+                    <TextBlock Foreground="White" Text="{Binding CriticalTaskMessage}"></TextBlock>
                 </Border>
-                <Border Grid.Column="0" Background="LightGray" Margin="10" Padding="10">
-                    <TextBlock Text="{Binding WeatherPrompt}" Margin="509,-188,-214,292" VerticalAlignment="Center"></TextBlock>
+                <Border Grid.Column="0" Background="#7f7f7f" Margin="10" Padding="10">
+                    <TextBlock Foreground="White" Text="{Binding WeatherPrompt}" Margin="509,-188,-214,292" VerticalAlignment="Center"></TextBlock>
                 </Border>
 
-                <TextBlock Text="{Binding TemperatureTips}" Margin="317,18,21,164" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding HumidityTips}" Margin="317,91,21,91" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding LuminiosityTips}" Margin="316,164,21,18" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Foreground="White" Text="{Binding TemperatureTips}" Margin="317,18,21,164" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Foreground="White" Text="{Binding HumidityTips}" Margin="317,91,21,91" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Foreground="White" Text="{Binding LuminiosityTips}" Margin="316,164,21,18" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
 
-                <ui:ToggleSwitch IsOn="{Binding AreLightsOpen}" Margin="23,198,0,0" OffContent="Lumière fermée" OnContent="Lumière allumée" VerticalAlignment="Top" />
+                <ui:ToggleSwitch IsOn="{Binding AreLightsOpen}" Margin="23,198,0,0" OffContent="Lumière fermée" OnContent="Lumière allumée" VerticalAlignment="Top"/>
                 <ui:ToggleSwitch IsOn="{Binding IsHeatOpen}" VerticalAlignment="Top" OffContent="Chauffage fermé" OnContent="Chauffage allumé" Margin="23,64,0,0"></ui:ToggleSwitch>
                 <ui:ToggleSwitch IsOn="{Binding IsWateringOpen}" VerticalAlignment="Top" Margin="23,153,0,0" OffContent="Arrosage fermé" OnContent="Arrosage ouvert"></ui:ToggleSwitch>
                 <ui:ToggleSwitch IsOn="{Binding AreWindowsOpen}" VerticalAlignment="Top" Margin="23,18,0,0" OffContent="Fenêtres fermées " OnContent="Fenêtres ouvertes"></ui:ToggleSwitch>
                 <ui:ToggleSwitch IsOn="{Binding IsVentilationOpen}" Margin="23,0,0,0" OffContent="Ventilation fermée" OnContent="Ventilation ouvert"/>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="10">
-                    <Button Content="Cycle de culture" Height="50" Margin="0,0,0,10" Width="174" Command="{Binding GoToCalendarCommand}"/>
-                    <Button Content="Inventaire" Height="50" Margin="0,0,0,10" RenderTransformOrigin="0.5,0.5" Width="175" IsEnabled="False">
-                    </Button>
-                    <Button Content="{Binding ToggleWeatherReadingMessage}" Height="50" Width="175" Command="{Binding ToggleWeatherReadingCommand}"/>
-                    <Button Content="Déconnexion" Height="50" Width="175" Margin="0,10,0,0" Command="{Binding SignOutCommand}"/>
+                    <Button Content="Cycle de culture" Height="50" Margin="0,0,0,10" Width="174" Command="{Binding GoToCalendarCommand}" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <Button Content="Inventaire" Height="50" Margin="0,0,0,10" RenderTransformOrigin="0.5,0.5" Width="175" IsEnabled="False" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <Button Content="{Binding ToggleWeatherReadingMessage}" Height="50" Width="175" Command="{Binding ToggleWeatherReadingCommand}" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                    <Button Content="Déconnexion" Height="50" Width="175" Margin="0,10,0,0" Command="{Binding SignOutCommand}" Style="{StaticResource MaterialDesignRaisedButton}"/>
                 </StackPanel>
             </Grid>
         </StackPanel>
