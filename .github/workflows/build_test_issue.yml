@@ -30,8 +30,7 @@ jobs:
       
     - name: Publish
       run: dotnet publish Automate/Automate.csproj --configuration Release --output ./publish --runtime win-x64 -p:PublishSingleFile=true --self-contained true
-    - name: List Publish Directory
-      run: ls -R ./publish
+
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
@@ -43,7 +42,7 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Release Asset
+    - name: Upload Release Asset (.exe)
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,6 +50,86 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./publish/Automate.exe
         asset_name: Automate.exe
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (.dll config)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/Automate.dll.config
+        asset_name: Automate.dll.config
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (.pdb)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/Automate.pdb
+        asset_name: Automate.pdb
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (.dll 1)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/D3DCompiler_47_cor3.dll
+        asset_name: D3DCompiler_47_cor3.dll
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (.dll 2)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/mongocrypt.dll
+        asset_name: mongocrypt.dll
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (.dll 3)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/PenImc_cor3.dll
+        asset_name: PenImc_cor3.dll
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (.dll 4)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/PresentationNative_cor3.dll
+        asset_name: PresentationNative_cor3.dll
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (.dll 5)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/vcruntime140_cor3.dll
+        asset_name: vcruntime140_cor3.dll
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (.dll 6)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./publish/wpfgfx_cor3.dll
+        asset_name: wpfgfx_cor3.dll
         asset_content_type: application/octet-stream
 
   create_issue:
