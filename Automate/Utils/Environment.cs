@@ -15,6 +15,6 @@ namespace Automate.Utils
         public static EnvironmentControls? environmentControls;
 
         public static string tempDataPath =
-            Directory.GetParent(System.Environment.CurrentDirectory)!.Parent!.Parent + @"\TempData.csv";
+            Directory.GetParent(System.Environment.CurrentDirectory)!.Parent!.Parent!.Parent + @"\TempData.csv";
     }
 }
