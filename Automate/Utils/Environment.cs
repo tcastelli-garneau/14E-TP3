@@ -1,6 +1,7 @@
 ﻿using Automate.Models;
 using Automate.Services;
 using Automate.Utils.Constants;
+using System.Configuration;
 using System.IO;
 
 namespace Automate.Utils
@@ -14,7 +15,6 @@ namespace Automate.Utils
         public static User? authenticatedUser;
         public static EnvironmentControls? environmentControls;
 
-        public static string tempDataPath =
-            Directory.GetParent(System.Environment.CurrentDirectory)!.Parent!.Parent!.Parent + @"\TempData.csv";
+        public static string tempDataPath = ConfigurationManager.AppSettings["TempDataPathProd"]!;
     }
 }

@@ -21,13 +21,11 @@ namespace Automate.ViewModels
         private readonly IWeatherReader weatherReader;
         private Window window;
 
-        private bool areLightsOpen;
         public bool AreLightsOpen
         {
             get => Environment.environmentControls!.AreLightsOpen;
             set
             {
-                areLightsOpen = value;
                 Environment.environmentControls!.AreLightsOpen = value;
                 OnPropertyChanged(nameof(AreLightsOpen));
 

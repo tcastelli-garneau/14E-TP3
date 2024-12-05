@@ -3,6 +3,7 @@ using Automate.Models;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace Automate.Utils.WeatherUtils
 {
@@ -11,8 +12,18 @@ namespace Automate.Utils.WeatherUtils
         public List<Weather> ReadWeather()
         {
             List<Weather> weathers = new List<Weather>();
+            TextFieldParser parser;
 
-            using (TextFieldParser parser = new TextFieldParser(Environment.tempDataPath))
+            try
+            {
+                parser = new TextFieldParser(ConfigurationManager.AppSettings["TempDataPathProd"]!);
+            }
+            catch (Exception)
+            {
+                parser = new TextFieldParser(ConfigurationManager.AppSettings["TempDataPathDev"]!);
+            };
+
+            using (parser)
             {
                 SetupDelimiters(parser);
                 RemoveHeaderFields(parser);
